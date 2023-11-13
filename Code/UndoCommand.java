@@ -1,19 +1,23 @@
 package Code;
 
-public class ExitCommand implements Command {
+import java.util.Stack;
+
+public class UndoCommand implements Command {
+    public Stack<Action> history;
+    public Shape shapes;
+
     @Override
     public void exit() {
-        System.out.println("-- End --");
-        System.exit(0);
+        // Nothing to do
     }
 
     @Override
     public void undo() {
-        // Nothing to do
     }
 
     @Override
     public void execute() {
         // Nothing to do
     }
+
 }

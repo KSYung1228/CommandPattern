@@ -11,6 +11,9 @@ public class Main {
 		InputStreamReader is = new InputStreamReader(System.in);
 		BufferedReader br = new BufferedReader(is);
 		Shape shape;
+		Command[] cmd = new Command[1];
+
+		cmd[0] = new ExitCommand();
 
 		while (true) {
 			try {
@@ -21,8 +24,7 @@ public class Main {
 				int option = Integer.parseInt(line);
 				switch (option) {
 					case 0:
-						System.out.println("-- End --");
-						System.exit(0);
+						cmd[0].exit();
 					case 1:
 						Action action = history.pop();
 						switch (action.getOption()) {
