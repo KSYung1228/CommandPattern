@@ -1,9 +1,10 @@
+package Code;
 
 import java.util.*;
 import java.io.*;
 
 public class Main {
-	
+
 	public static void main(String[] args) {
 		Vector<Shape> shapes = new Vector<Shape>();
 		Stack<Action> history = new Stack<Action>();
@@ -36,13 +37,14 @@ public class Main {
 						break;
 					case 2:
 						for (int i = 0; i < shapes.size(); i++)
-							( (Shape) shapes.elementAt(i)).draw();
+							((Shape) shapes.elementAt(i)).draw();
 						break;
 					case 3:
 						System.out.print("Enter index of the shape: ");
 						line = br.readLine();
 						int index = Integer.parseInt(line);
-						if (index < 0 || index >= shapes.size()) throw new Exception("Out of Range");
+						if (index < 0 || index >= shapes.size())
+							throw new Exception("Out of Range");
 						shape = shapes.get(index);
 						shapes.remove(shape);
 						history.push(new Action(3, shape, index));
