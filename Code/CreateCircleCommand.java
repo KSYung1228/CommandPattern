@@ -2,28 +2,22 @@ package Code;
 
 import java.util.Vector;
 
-class CreateCircleCommand implements Command {
+public class CreateCircleCommand implements Command {
     private Vector<Shape> shapes;
-    private Circle circle;
+    private int radius;
+    private Circle createdCircle;
 
     public CreateCircleCommand(Vector<Shape> shapes, int radius) {
         this.shapes = shapes;
-        this.circle = new Circle(radius);
+        this.radius = radius;
     }
 
-    @Override
     public void execute() {
-        shapes.add(circle);
+        createdCircle = new Circle(radius);
+        shapes.add(createdCircle);
     }
 
-    @Override
     public void undo() {
-        shapes.remove(circle);
+        shapes.remove(createdCircle);
     }
-
-    @Override
-    public void exit() {
-        // nothing to do
-    }
-
 }

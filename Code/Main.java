@@ -7,13 +7,14 @@ public class Main {
 
 	public static void main(String[] args) {
 		Vector<Shape> shapes = new Vector<Shape>();
-		Stack<Action> history = new Stack<Action>();
+		Stack<Command> history = new Stack<Command>();
 		InputStreamReader is = new InputStreamReader(System.in);
 		BufferedReader br = new BufferedReader(is);
-		Shape shape;
-		Command[] cmd = new Command[1];
+		Command[] cmd = new Command[6];
 
 		cmd[0] = new ExitCommand();
+		cmd[1] = new UndoCommand(history);
+		cmd[2] = new DrawCommand(shapes);
 
 		while (true) {
 			try {
@@ -24,22 +25,15 @@ public class Main {
 				int option = Integer.parseInt(line);
 				switch (option) {
 					case 0:
-						cmd[0].exit();
+						cmd[0].execute();
+						break;
 					case 1:
-						Action action = history.pop();
-						switch (action.getOption()) {
-							case 3:
-								shapes.add(action.getIndex(), action.getShape());
-								break;
-							case 4:
-							case 5:
-								shapes.remove(action.getShape());
-								break;
-						}
+						cmd[1].execute();
 						break;
 					case 2:
-						for (int i = 0; i < shapes.size(); i++)
-							((Shape) shapes.elementAt(i)).draw();
+						cmd[2] = new DrawCommand(shapes);
+						cmd[2].execute();
+						history.push(cmd[2]);
 						break;
 					case 3:
 						System.out.print("Enter index of the shape: ");
@@ -47,17 +41,17 @@ public class Main {
 						int index = Integer.parseInt(line);
 						if (index < 0 || index >= shapes.size())
 							throw new Exception("Out of Range");
-						shape = shapes.get(index);
-						shapes.remove(shape);
-						history.push(new Action(3, shape, index));
+						cmd[3] = new DeleteShapeCommand(shapes, index);
+						cmd[3].execute();
+						history.push(cmd[3]);
 						break;
 					case 4:
 						System.out.print("Enter radius: ");
 						line = br.readLine();
 						int radius = Integer.parseInt(line);
-						shape = new Circle(radius);
-						shapes.add(shape);
-						history.push(new Action(4, shape, -1));
+						cmd[4] = new CreateCircleCommand(shapes, radius);
+						cmd[4].execute();
+						history.push(cmd[4]);
 						break;
 					case 5:
 						System.out.print("Enter width: ");
@@ -66,9 +60,9 @@ public class Main {
 						System.out.print("Enter height: ");
 						line = br.readLine();
 						int height = Integer.parseInt(line);
-						shape = new Rectangle(width, height);
-						shapes.add(shape);
-						history.push(new Action(5, shape, -1));
+						cmd[5] = new CreateRectangleCommand(shapes, width, height);
+						cmd[5].execute();
+						history.push(cmd[5]);
 						break;
 					default:
 						throw new Exception("Invalid Option");

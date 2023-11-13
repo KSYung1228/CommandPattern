@@ -1,28 +1,25 @@
 package Code;
 
-import java.util.Vector;
+import java.util.*;
 
 public class CreateRectangleCommand implements Command {
     private Vector<Shape> shapes;
-    private Rectangle rectangle;
+    private int width;
+    private int height;
+    private Rectangle createdRectangle;
 
     public CreateRectangleCommand(Vector<Shape> shapes, int width, int height) {
         this.shapes = shapes;
-        this.rectangle = new Rectangle(width, height);
+        this.width = width;
+        this.height = height;
     }
 
-    @Override
     public void execute() {
-        shapes.add(rectangle);
+        createdRectangle = new Rectangle(width, height);
+        shapes.add(createdRectangle);
     }
 
-    @Override
     public void undo() {
-        shapes.remove(rectangle);
-    }
-
-    @Override
-    public void exit() {
-        // Nothing to do
+        shapes.remove(createdRectangle);
     }
 }

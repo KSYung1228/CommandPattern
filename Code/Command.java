@@ -1,10 +1,7 @@
 package Code;
 
 public interface Command {
+    void execute();
 
-    public abstract void exit();
-
-    public abstract void undo();
-
-    public abstract void execute();
+    void undo();
 }
