@@ -4,8 +4,4 @@ public class ExitCommand implements Command {
         System.out.println("-- End --");
         System.exit(0);
     };
-
-    @Override
-    public void undo() {
-    };
 }

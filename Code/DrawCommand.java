@@ -11,11 +11,6 @@ public class DrawCommand implements Command {
     }
 
     @Override
-    public void undo() {
-
-    }
-
-    @Override
     public void execute() {
         for (int i = 0; i < shapes.size(); i++)
             ((Shape) shapes.elementAt(i)).draw();
