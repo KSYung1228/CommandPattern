@@ -1,4 +1,3 @@
-package Code;
 
 public class Circle implements Shape {
 	private int radius;
