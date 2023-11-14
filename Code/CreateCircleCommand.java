@@ -4,11 +4,16 @@ import java.util.Stack;
 import java.util.Vector;
 
 public class CreateCircleCommand implements Command {
-    Vector<Shape> shapes = new Vector<Shape>();
-    Stack<Action> history = new Stack<Action>();
     InputStreamReader is = new InputStreamReader(System.in);
     BufferedReader br = new BufferedReader(is);
+    Vector<Shape> shapes;
+    Stack<Action> history;
     Shape shape;
+
+    public CreateCircleCommand(Vector<Shape> shapes, Stack<Action> history) {
+        this.shapes = shapes;
+        this.history = history;
+    }
 
     @Override
     public void undo() {

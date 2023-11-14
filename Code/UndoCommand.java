@@ -4,14 +4,23 @@ import java.util.Stack;
 import java.util.Vector;
 
 public class UndoCommand implements Command {
-    Vector<Shape> shapes = new Vector<Shape>();
-    Stack<Action> history = new Stack<Action>();
     InputStreamReader is = new InputStreamReader(System.in);
     BufferedReader br = new BufferedReader(is);
     Shape shape;
+    Vector<Shape> shapes;
+    Stack<Action> history;
+
+    public UndoCommand(Vector<Shape> shapes, Stack<Action> history) {
+        this.shapes = shapes;
+        this.history = history;
+    }
 
     @Override
     public void undo() {
+    }
+
+    @Override
+    public void execute() {
         Action action = history.pop();
         switch (action.getOption()) {
             case 3:
@@ -22,11 +31,6 @@ public class UndoCommand implements Command {
                 shapes.remove(action.getShape());
                 break;
         }
-    }
-
-    @Override
-    public void execute() {
-
     }
 
 }

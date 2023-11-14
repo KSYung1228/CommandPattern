@@ -1,14 +1,14 @@
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.util.Stack;
 import java.util.Vector;
 
 public class DrawCommand implements Command {
-    Vector<Shape> shapes = new Vector<Shape>();
-    Stack<Action> history = new Stack<Action>();
-    InputStreamReader is = new InputStreamReader(System.in);
-    BufferedReader br = new BufferedReader(is);
-    Shape shape;
+    Vector<Shape> shapes;
+    Stack<Action> history;
+
+    public DrawCommand(Vector<Shape> shapes, Stack<Action> history) {
+        this.shapes = shapes;
+        this.history = history;
+    }
 
     @Override
     public void undo() {
