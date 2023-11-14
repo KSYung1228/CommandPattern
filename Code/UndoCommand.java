@@ -16,10 +16,6 @@ public class UndoCommand implements Command {
     }
 
     @Override
-    public void undo() {
-    }
-
-    @Override
     public void execute() {
         Action action = history.pop();
         switch (action.getOption()) {

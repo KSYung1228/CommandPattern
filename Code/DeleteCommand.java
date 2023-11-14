@@ -16,10 +16,6 @@ public class DeleteCommand implements Command {
     }
 
     @Override
-    public void undo() {
-    }
-
-    @Override
     public void execute() {
         try {
             System.out.print("Enter index of the shape: ");
