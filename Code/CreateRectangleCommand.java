@@ -12,16 +12,6 @@ public class CreateRectangleCommand implements Command {
 
     @Override
     public void undo() {
-        Action action = history.pop();
-        switch (action.getOption()) {
-            case 3:
-                shapes.add(action.getIndex(), action.getShape());
-                break;
-            case 4:
-            case 5:
-                shapes.remove(action.getShape());
-                break;
-        }
     }
 
     @Override
